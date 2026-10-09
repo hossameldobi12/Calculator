@@ -10,11 +10,16 @@
 
 
                 Console.WriteLine("please enter the first number:");
-                double num1 = double.Parse(Console.ReadLine());
+               bool flag = double.TryParse(Console.ReadLine(), out double num1);
                 Console.WriteLine("please enter the second number:");
-                double num2 = double.Parse(Console.ReadLine());
+                 flag = double.TryParse(Console.ReadLine(), out double num2);
                 Console.WriteLine("please enter the operation (+, -, *, /):");
-                string operation = Console.ReadLine();
+                string? operation = Console.ReadLine();
+                if (operation == null)
+                {
+                    Console.WriteLine("Invalid operation.");
+                    continue;
+                }
                 Calculator calculator = new Calculator();
                 switch (operation)
                 {
@@ -36,8 +41,8 @@
                 }
 
                 Console.WriteLine("Do you want to perform another calculation? (y/n)");
-                string continueCalculation = Console.ReadLine();
-                if (continueCalculation.ToLower() != "y")
+                string? continueCalculation = Console.ReadLine();
+                if (continueCalculation?.ToLower() != "y")
                 {
                     break;
                 }
